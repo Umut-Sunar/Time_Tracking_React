@@ -1,0 +1,73 @@
+.relative {
+
+              position: relative;
+
+}
+
+.absolute {
+
+              position: absolute;
+
+}
+
+
+
+.card-main {
+
+              display: flex;
+              flex-direction: column;
+              width: 250px;
+              height: 200px;
+              justify-content: end;
+
+
+
+}
+
+.cardFields {
+              width: 100%;
+              height: 90%;
+              border-radius: 20px;
+              padding: 10px;
+
+}
+
+.cardbg {
+
+              bottom: 5px;
+              background-color: #524EE1;
+              width: 100%;
+              height: 95%;
+              border-radius: 20px;
+
+
+}
+
+.spendingTimeDiv {
+
+
+              text-align: center;
+
+}
+
+.cardTitle {
+
+              font-size: 24px;
+}
+
+.spendingHour {
+              font-size: 24px;
+              font-weight: 1000;
+
+}
+.weeklyChange{
+
+             font-size: 12px; 
+}
+
+.changeRatio{
+
+              padding: 2px;
+              font-size: 24px;
+
+}

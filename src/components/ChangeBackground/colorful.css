@@ -1,0 +1,26 @@
+
+@keyframes rotate {
+              0% {
+                       transform: rotate(0deg);
+                   }
+                   100% {
+                       transform: rotate(360deg);
+                   }
+               }
+               .out-top {
+                   animation: rotate 120s linear infinite;
+                   transform-origin: 13px 25px;
+               }
+               .in-top {
+                   animation: rotate 60s linear infinite;
+                   transform-origin: 13px 25px;
+               }
+               .out-bottom {
+                   animation: rotate 150s linear infinite;
+                   transform-origin: 84px 93px;
+               }
+               .in-bottom {
+                   animation: rotate 90s linear infinite;
+                   transform-origin: 84px 93px;
+               }
+             
