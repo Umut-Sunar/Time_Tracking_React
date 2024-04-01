@@ -6,11 +6,13 @@ import UserProfile from "./src/components/CreatorAndUserInfo/UserCard/UserCard";
 import { BackgroundChange } from "./src/components/ChangeBackground/background";
 import BlueElements from "./src/components/ChangeBackground/dynamicBlue";
 import ColorfulElement from "./src/components/ChangeBackground/colorfulElement";
+import ContentAdd from "./src/components/CreatorAndUserInfo/ContentAdd/contentAdd";
 
 import usersData from "./Data/userData";
 import cardsData from "./Data/cardData";
 import colorData from "./Data/colorlist";
 import bgNames from "./Data/backgroundData";
+import colorHex from "./Data/colorListMatchCode";
 
 import "./App.css";
 
@@ -18,32 +20,19 @@ export default function App() {
   const [userData, setUserData] = useState(usersData);
   const [cardData, setCardData] = useState(cardsData);
   const [addCardStatus, setAddCardStatus] = useState(false);
-  const [activeBg,setActiveBg] = useState('dynamicBlue')
+  const [activeBg, setActiveBg] = useState("dynamicBlue");
 
-  /* Bu bölüm useEffect ile ilgili olduğunu düşünüyorum. Bu nedenle şimdi bırakıyorum
 
-  const userIdReach = 1;
-
-  function filtereleme(userIdReach) {
-    const filtered = cardsData.find(
-      (eachdata) => eachdata.userID === userIdReach
-    );
-
-    if (filtered) {
-      const result = filtered["Projects"];
-      setCardData(result);
-    } else {
-      setCardData([])
-    }
-  }
-  useEffect(() => {
-    filtereleme(userIdReach);
-  }, [userIdReach]);
-*/
 
   function addBtn() {
     if (addCardStatus === false) {
       setAddCardStatus(true);
+    }
+  }
+
+  function closeContentCard(boolen) {
+    if (addCardStatus === true) {
+      setAddCardStatus(boolen);
     }
   }
 
@@ -52,11 +41,20 @@ export default function App() {
 
     const whichBG = arr.split(" ");
     let result = whichBG[whichBG.length - 1];
-    result = result.replace(/^\./, "")
+    result = result.replace(/^\./, "");
     html.classList = "";
     html.classList.add(result);
-    setActiveBg(result)
+    setActiveBg(result);
   }
+
+  //card create fonskyionudur aslında, ismini çok yerde kullandığım
+  // için değiştirmedim
+  function cardColorSelection(selectedDataObj) {
+    const newCardData = selectedDataObj;
+    setCardData([...cardData, newCardData]);
+  }
+
+
 
   return (
     <>
@@ -64,13 +62,16 @@ export default function App() {
         bgNames={bgNames}
         changBGColor={changBGColor}
       ></BackgroundChange>
+
       <UserProfile userData={userData} addCard={addBtn}></UserProfile>
       {addCardStatus && (
-        <contentAdd
+        <ContentAdd
           closeContentCard={closeContentCard}
-          contentCreate={contentCreate}
+          // contentCreate={contentCreate}
           colorData={colorData}
-        ></contentAdd>
+          cardColorSelection={cardColorSelection}
+          colorHex= {colorHex}
+        ></ContentAdd>
       )}
       <Cards
         classname={"main-cards-area"}
@@ -78,8 +79,11 @@ export default function App() {
         cardData={cardData}
       ></Cards>
 
-{ (activeBg==="dynamicBlue") ? <BlueElements/> : (activeBg==="dynamicColorful") ? <ColorfulElement/> :null }
-
+      {activeBg === "dynamicBlue" ? (
+        <BlueElements />
+      ) : activeBg === "dynamicColorful" ? (
+        <ColorfulElement />
+      ) : null}
     </>
   );
 }

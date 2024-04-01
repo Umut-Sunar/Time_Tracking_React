@@ -1,0 +1,85 @@
+.content-container {
+  display: flex;
+  flex-direction: column;
+
+  z-index: 100;
+  position: absolute;
+  color: black;
+
+  border-radius: 20px;
+  background: white;
+  background-blend-mode: screen;
+  opacity: 95%;
+
+
+
+
+
+  gap: 30px;
+
+}
+
+.insertInfo {
+  display: flex;
+  flex-direction: row;
+}
+
+.closeButton-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px;
+  background-color: tomato;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  text-align: center;
+}
+.contentCloseButton {
+  width: 25px;
+  height: 25px;
+  border-radius: 20px;
+  stroke: none;
+  background: yellow;
+}
+.buton-container {
+  display: flex;
+  justify-content: end;
+  flex: 1;
+}
+
+.AddTitle {
+  width: 100%;
+  flex: 4;
+}
+.insertInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.insertInfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  padding: 20px;
+}
+
+.createCardForm {
+  height: 75%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+input::placeholder {
+font-style: italic;
+color: gray;
+opacity: 0.30;
+
+
+}
