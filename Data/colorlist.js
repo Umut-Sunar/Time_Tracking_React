@@ -6,7 +6,7 @@ const colorList = [
   "Açık Mavi",
   "Sarı-Yeşil",
   "Tomato",
-  "Tomato 2 ",
+  "Tomato 2",
   "Sarı",
 ];
 

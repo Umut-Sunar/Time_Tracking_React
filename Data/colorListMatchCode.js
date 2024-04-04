@@ -7,8 +7,8 @@ const  colorHex = {
               'Açık Mavi' : '#5797E0',
               'Sarı-Yeşil' : '#DEDD37',
               'Tomato' : '#DE374A',
-              'Tomato 2 ' : '"#ED6A7F"',
-              'Sarı' : '#EBC76D"',
+              'Tomato 2'   : '#ED6A7F',
+              'Sarı' : '#EBC76D',
 
 }
 

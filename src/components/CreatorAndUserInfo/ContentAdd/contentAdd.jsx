@@ -6,41 +6,62 @@ import "./contentAdd.css";
 import axios from "axios";
 
 export default function ContentAdd(props) {
-  const { closeContentCard, colorData, cardColorSelection,colorHex } = props;
+  const { closeContentCard, colorData, cardColorSelection, colorHex } = props;
+
+  const [nameArea, setNameArea] = useState("");
+  const [hourArea, setHourArea] = useState("");
 
   function closeContentCardAction() {
     closeContentCard(false);
   }
 
+  function listenNameChange(event) {
+    const upperTitle = event.target.value;
+    const newArray = upperTitle.split(" ");
+    const capArray = newArray.map(
+      (each) => each.charAt(0).toUpperCase() + each.slice(1)
+    );
+    const resultText = capArray.join(" ");
+
+    setNameArea(resultText)
+   
  
+  }
+  function listenHourChange(event) {
+    const hour = event.target.value.toUpperCase();
+    setHourArea(hour);
+  }
 
+  function resetForm() {
+    setTimeout(() => {
+
+      setHourArea("");
+      setNameArea("");
+    },10)
+   
+  }
   const sendFormData = async (event) => {
-
-    const uniqueCardID =  Math.floor(Math.random()*100000000)
+    const uniqueCardID = Math.floor(Math.random() * 100000000);
     event.preventDefault();
 
-  
     const selectedCardInfos = {
       ProjectName: event.target.ProjectName.value,
       TotalSpendingTime: event.target.TotalSpendingTime.value,
-      VsLastWeek:0,
-      cardColor: event.target.selectedColor.value,
+      VsLastWeek: 0,
+      cardColor: colorHex[event.target.selectedColor.value],
     };
 
     //Card bilgilerini yukarı app.jsx 'e yolluyorum
-     cardColorSelection(selectedCardInfos)
+    cardColorSelection(selectedCardInfos);
 
-    
-      try {
-        const response = await axios.post(
-          ` http://localhost:8080/createNewCard/:${uniqueCardID}`,
-          selectedCardInfos
-        );
-        
-      } catch (err) {
-        console.log("gönderilirken hata: ", err);
-      }
-    
+    try {
+      const response = await axios.post(
+        ` http://localhost:8080/createNewCard/:${uniqueCardID}`,
+        selectedCardInfos
+      );
+    } catch (err) {
+      console.log("gönderilirken hata: ", err);
+    }
   };
 
   return (
@@ -61,22 +82,28 @@ export default function ContentAdd(props) {
             className="createCardForm"
             onSubmit={(event) => sendFormData(event)}
           >
-            <label htmlFor="">Proje İsmi</label>
+            <label htmlFor="">Project Name</label>
             <input
               id="projectName"
               name="ProjectName"
               type="text"
               placeholder="Full Stack Kurs"
+              autoComplete="off"
+              value={nameArea}
+              onChange={(e) => listenNameChange(e)}
             />
-            <label htmlFor="">Harcanan Süre (Varsa)</label>
+            <label htmlFor="">Spending Hour (opt)</label>
             <input
               id="spendingTime"
               name="TotalSpendingTime"
               placeholder="01:10:05 (hh:mm:ss)"
               type="text"
+              autoComplete="off"
+              value={hourArea}
+              onChange={(ev) => listenHourChange(ev)}
             />
             <label>
-              Proje Kart Rengi Seçimi:
+              Pick Project Card Color:
               <select name="selectedColor">
                 <ColorList
                   colorData={colorData}
@@ -86,7 +113,7 @@ export default function ContentAdd(props) {
             </label>
 
             <div className="addButon-container">
-              <button type="submit" className="addBtn">
+              <button type="submit" className="addBtn" onClick={resetForm}>
                 Add Project
               </button>
             </div>

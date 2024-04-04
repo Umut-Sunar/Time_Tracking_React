@@ -5,7 +5,9 @@
     "less": "^4.2.0",
     "mongoose": "^8.2.4",
     "react": "^18.2.0",
+    "react-countdown-circle-timer": "^3.2.1",
     "react-dom": "^18.2.0",
+    "react-timer-hook": "^3.0.7",
     "vite": "^5.2.6"
   },
   "name": "time_tracking_react",
