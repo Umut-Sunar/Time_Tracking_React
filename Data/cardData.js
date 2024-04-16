@@ -3,6 +3,7 @@ let cardsData = [
     userID: 1,
     "UserProjects": [
       {
+        ProjectID: 1234123,
         ProjectName: "Full Stack Kurs",
         TotalSpendingTime: "13:10:00",
         VsLastWeek: 35,

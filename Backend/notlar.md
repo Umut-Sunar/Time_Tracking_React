@@ -1,0 +1,5 @@
+dark
+dynamicColorful
+white
+dynamicBlue
+yellow

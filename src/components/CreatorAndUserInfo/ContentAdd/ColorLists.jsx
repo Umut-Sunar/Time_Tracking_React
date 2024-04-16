@@ -3,7 +3,7 @@ import React from "react";
 import ColorOption from "./ColorOption";
 
 export default function ColorList(props) {
-  const { colorData,cardColorSelection } = props;
+  const { colorData} = props;
 
   return (
     <>

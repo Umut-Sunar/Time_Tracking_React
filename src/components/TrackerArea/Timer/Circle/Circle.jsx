@@ -30,8 +30,8 @@ useEffect(() => {
         }}
 
       >
-        <circle class="bg"></circle>
-        <circle class="fg"></circle>
+        <circle className="bg"></circle>
+        <circle className="fg"></circle>
       </svg>
     </>
   );

@@ -1,9 +1,21 @@
 import React from "react";
-import { useState } from "react";
+import styled from "styled-components";
+
+
 import BackgroundBtn from "./changeBgBtn";
 
+const ProfileCardLinksThemeSelect = styled.select`
+  width: 80%;
+  height: 30px;
+  border: 1px solid black;
+  background-color: white;
+  overflow-y: scroll;
+`;
+
+
+
 export function BackgroundChange(props) {
-  const { bgNames, changBGColor } = props;
+  const { bgNames, changBGColor ,setTheme} = props;
 
 //   const newBgNames = bgNames.map((color, id) => {
 //    if (color === ".white") return "White";
@@ -32,10 +44,17 @@ export function BackgroundChange(props) {
                   return 'UNDEFINED';
               }
             };
-          
+            function changeColor(e) {
+              
+              
+              const classColor = e.target.value;
+              
+              changBGColor(classColor);
+            }
 
   return (
-    <div className="backgroundContainer absolute">
+    <ProfileCardLinksThemeSelect name="selectedTheme" defaultValue={'BLUE'} onChange={changeColor}>
+    
       {bgNames &&
         bgNames.map((eachColor, id) => {
 
@@ -44,12 +63,13 @@ export function BackgroundChange(props) {
           return (
             <BackgroundBtn
               key={id}
-              className={eachColor}
               changBGColor={changBGColor} 
               name={name}
+              value={eachColor}
+              setTheme={setTheme}
             />
           );
         })}
-    </div>
+    </ProfileCardLinksThemeSelect>
   );
 }

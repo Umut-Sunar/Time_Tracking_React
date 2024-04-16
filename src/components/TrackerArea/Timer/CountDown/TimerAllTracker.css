@@ -107,8 +107,93 @@ position: relative;
 
 /*CountDOWN V2*/
 
-.Counter {
+.classic-counter {
   font-family: sans-serif;
   text-align: center;
   font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+ 
 }
+.classic-timer-btns{
+display: flex;
+flex-direction: row;
+gap: 3px ;
+
+}
+.timerColor {
+
+font-size: 36px;
+
+}
+
+/*TimeSetter.jsx  */
+
+
+.taskTitle{
+
+color: black;
+margin-top: 20px;
+margin-bottom: 10px;
+
+}
+
+.task{
+
+  width: 400px;
+  height: 40px;
+}
+
+.taskName {
+
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction:column;
+  gap: 3px;
+  text-align: center;
+justify-content: center;
+align-items: center;
+  
+  
+}
+
+.taskTitle::placeholder{
+font-size: 20px;
+font-style: italic;
+color: rgb(167, 160, 160);
+
+}
+
+  /* CSS */
+  .trackerAddbtn {
+    display: inline-block;
+    padding: 5px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  
+    
+    border: 2px solid #000;
+    background: #fff;
+    box-shadow: -6px 6px 0px 0px #000;
+    width:75px;
+    height: 40px;
+  }
+  
+  .trackerAddbtn:active,
+  .trackerAddbtn:hover {
+    outline: 0;
+  }
+
+.inputArea{
+display: flex;
+gap:10px;
+justify-content: center;
+align-items: center;
+
+
+}
+  
+

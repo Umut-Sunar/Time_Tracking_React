@@ -1,15 +1,17 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState ,forwardRef} from "react";
 import ColorList from "./ColorLists";
 
 import "./contentAdd.css";
 import axios from "axios";
+import api_path from "../../../../Backend/Api_path";
 
-export default function ContentAdd(props) {
-  const { closeContentCard, colorData, cardColorSelection, colorHex } = props;
+const ContentAdd = forwardRef((props,ref) => {
+  const { closeContentCard, colorData, cardCreated, colorHex } = props;
 
   const [nameArea, setNameArea] = useState("");
   const [hourArea, setHourArea] = useState("");
+
 
   function closeContentCardAction() {
     closeContentCard(false);
@@ -49,14 +51,15 @@ export default function ContentAdd(props) {
       TotalSpendingTime: event.target.TotalSpendingTime.value,
       VsLastWeek: 0,
       cardColor: colorHex[event.target.selectedColor.value],
+      uniqueCardID: uniqueCardID,
     };
 
-    //Card bilgilerini yukarı app.jsx 'e yolluyorum
-    cardColorSelection(selectedCardInfos);
+    //Card bilgilerini yukarı mainpage.jsx 'e yolluyorum
+    cardCreated(selectedCardInfos);
 
     try {
       const response = await axios.post(
-        ` http://localhost:8080/createNewCard/:${uniqueCardID}`,
+        `${api_path}/createNewCard/${uniqueCardID}`,
         selectedCardInfos
       );
     } catch (err) {
@@ -66,9 +69,11 @@ export default function ContentAdd(props) {
 
   return (
     <>
-      <div className="content-container">
+      <div ref={ref} 
+
+      className="content-container">
         <div className="closeButton-container">
-          <h1 className="AddTitle">Proje Ekle 🙌</h1>
+          <h1 className="AddTitle">Add Project for being awesome 🙌</h1>
           <div className="buton-container"></div>
           <button
             className="contentCloseButton"
@@ -87,7 +92,7 @@ export default function ContentAdd(props) {
               id="projectName"
               name="ProjectName"
               type="text"
-              placeholder="Full Stack Kurs"
+              placeholder="Full Stack Course"
               autoComplete="off"
               value={nameArea}
               onChange={(e) => listenNameChange(e)}
@@ -107,7 +112,7 @@ export default function ContentAdd(props) {
               <select name="selectedColor">
                 <ColorList
                   colorData={colorData}
-                  cardColorSelection={cardColorSelection}
+                  
                 />
               </select>
             </label>
@@ -120,6 +125,11 @@ export default function ContentAdd(props) {
           </form>
         </div>
       </div>
+ 
+ 
     </>
   );
 }
+)
+
+export default ContentAdd
