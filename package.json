@@ -16,6 +16,7 @@
     "react-router": "^6.22.3",
     "react-router-dom": "^6.22.3",
     "react-timer-hook": "^3.0.7",
+    "sass": "^1.75.0",
     "styled-components": "^6.1.8",
     "vite": "^5.2.6"
   },
@@ -30,5 +31,8 @@
     "serve": "vite preview"
   },
   "author": "Dogan Umut Sunar",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "saas": "^1.0.0"
+  }
 }

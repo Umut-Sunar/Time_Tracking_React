@@ -6,13 +6,13 @@ const Bell = styled.img`
   height: 20px;
 `;
 
-export default function NotificationButton(props) {
-const {theme} = props
+export default function NotificationButton() {
+
 
 
   return (
     <>
-     {theme==="white" ? <Bell src="src/img/bell.svg" />: <Bell src="src/img/bellwhite.svg" />} 
+    <Bell src="src/img/bellwhite.svg" />
     </>
   );
 }

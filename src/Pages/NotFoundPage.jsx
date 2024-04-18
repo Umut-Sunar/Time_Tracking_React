@@ -1,17 +1,54 @@
-import { useRouteError } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 import React from "react";
+
+import '../../deviceStyles/ErrorPagecss.scss'
+
 
 export default function ErrorPage() {
   const error = useRouteError();
-  console.error(error);
+  
 
   return (
-    <div id="error-page">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        <i>{error.statusText || error.message}</i>
-      </p>
+  <>
+  
+  <div className="box">
+  <div className="box__ghost">
+    <div className="symbol"></div>
+    <div className="symbol"></div>
+    <div className="symbol"></div>
+    <div className="symbol"></div>
+    <div className="symbol"></div>
+    <div className="symbol"></div>
+    
+    <div className="box__ghost-container">
+      <div className="box__ghost-eyes">
+        <div className="box__eye-left"></div>
+        <div className="box__eye-right"></div>
+      </div>
+      <div className="box__ghost-bottom">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
+    <div className="box__ghost-shadow"></div>
+  </div>
+  
+  <div className="box__description">
+    <div className="box__description-container">
+      <div className="box__description-title">Whoops!</div>
+      <div className="box__description-text">It seems like we couldn't find the page you were looking for</div>
+    </div>
+    
+    <Link to='/' target="" className="box__button">Go back</Link>
+    
+  </div>
+  
+</div>
+  
+  
+  </>
   );
 }

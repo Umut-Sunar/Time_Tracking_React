@@ -109,11 +109,11 @@ export default function UserProfileHeader(props) {
         <ProfileCardLınks $theme={theme} href="#">
           Profile Settings
         </ProfileCardLınks>
-        <BackgroundChange
+        {/* <BackgroundChange
         setTheme={setTheme}
           bgNames={bgNames}
           changBGColor={changBGColor}
-        ></BackgroundChange>
+        ></BackgroundChange> */}
         <ProfileCardLınks $theme={theme} href="#">
           UPGRADE
         </ProfileCardLınks>

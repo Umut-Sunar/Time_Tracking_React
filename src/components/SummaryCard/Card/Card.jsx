@@ -34,12 +34,12 @@ function Card(props) {
       <div className="card-main relative">
         <div className="cardbg absolute"></div>
         <div className="delete" onClick={deleteCard}>
-          <FontAwesomeIcon className="deleteIconBtn" icon={faTrash} />
+          <FontAwesomeIcon  className="deleteIconBtn" icon={faTrash} />
         </div>
         {eachCardData && (
           <div
             className="cardFields relative"
-            style={{ "background-color": `${eachCardData.cardColor}` }}
+            style={{ "backgroundColor": `${eachCardData.cardColor}` }}
           >
             <div className="Contentwrapper">
               <h2 className="cardTitle">{eachCardData.ProjectName}</h2>

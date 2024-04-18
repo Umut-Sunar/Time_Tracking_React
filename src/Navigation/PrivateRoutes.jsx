@@ -1,25 +1,30 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import {
-              NavLink,
-              Navigate,
-              Route,
-              Routes,
-              BrowserRouter as Router,
-              Outlet,
-            } from "react-router-dom";
-
+  NavLink,
+  Navigate,
+  Route,
+  Routes,
+  BrowserRouter as Router,
+  Outlet,
+} from "react-router-dom";
 
 export default function PrivateRoot(props) {
+  const { isLogin } = props;
+  const [shouldRedirect, setShouldRedirect] = useState(false);
 
-              const {isLogin} = props
 
-              return (
-                            <>
-                              {isLogin ? (
-                                <Outlet/>
-                              ) : (
-                                <Navigate to='/authentication'/>
-                              )}
-                            </>
-                          );
+  useEffect(() => {
+    if (isLogin) {
+      setShouldRedirect(false);
+    } else {
+      setShouldRedirect(true);
+    }
+  }, [isLogin]);
+
+  return (
+    <>
+    {shouldRedirect?  <Navigate to='/authentication'> : <Outlet /> }
+     
+    </>
+  );
 }

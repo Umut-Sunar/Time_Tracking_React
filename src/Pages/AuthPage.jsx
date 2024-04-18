@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  Outlet,
-} from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 
 import Auth from "./Login";
 import { devices } from "../../deviceStyles/devices";
+import api_path from "../../Backend/Api_path";
 
 const Wrapper = styled.div`
   display: flex;
@@ -55,7 +50,8 @@ const AuthArea = styled.div`
 `;
 
 const DynamicSlogan = styled.h1`
-  font-size: 48px;
+
+font-size: 36px;
   font-family: "Roboto", sans-serif;
   font-weight: 800;
   font-style: normal;
@@ -69,8 +65,9 @@ const StaticParagraf= styled.p`
 font-size: 18px;
 font-family: "Roboto", sans-serif;
 font-weight: 500;
-font-style: normal;
-color: black text-align= center;
+
+color: white,
+text-align:center;
 line-height: 1.4;
 
 `
@@ -107,10 +104,21 @@ export default function AuthPage(props) {
     }, 4000);
   }, []);
 
+function submitAuth(gettedUserInfo){
+  axios
+      .post(`${api_path}/authentication`, gettedUserInfo,{ withCredentials: true})
+      .then((response) => {
+        console.log(response.data)
+        
+        
+        })
+      .catch((err) =>
+        console.log("Kullanıcı bilgileri gönderilirken hata oluştu")
+      );
+}
 
 
 
-  
   return (
     <>
       <Wrapper className="AuthWrapper">
@@ -122,7 +130,7 @@ export default function AuthPage(props) {
 
         <AuthArea className="AuthArea">
         {isActive ? ( 
-          <TextWrapper>
+          <TextWrapper className="textWrapper">
           <DynamicSlogan>{dynamic}</DynamicSlogan>
           <StaticParagraf>Don't wait for change,create it!. Start transforming your life today.</StaticParagraf>
           </TextWrapper>
@@ -132,7 +140,7 @@ export default function AuthPage(props) {
         </TextWrapper>}
           
 
-          <Auth />
+          <Auth submitAuth={submitAuth} />
         </AuthArea>
       </Wrapper>
     </>

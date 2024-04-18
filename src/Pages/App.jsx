@@ -1,9 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 import AuthPage from "./AuthPage";
 import PrivateRoot from "../Navigation/PrivateRoutes";
-import NotFoundPage from "./NotFoundPage";
+
 
 import usersData from "../../Data/userData";
 
@@ -20,6 +21,8 @@ import MainContentArea from "./MainContentArea";
 import Dashboard from "./Dashboard";
 import Reports from "./Reports";
 import MainPage from "./MainPage";
+import ErrorPage from "./NotFoundPage";
+import api_path from "../../Backend/Api_path";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -27,6 +30,16 @@ export default function App() {
   const [activeBg, setActiveBg] = useState("white");
   const [userData, setUserData] = useState(usersData);
 
+useEffect( () => {
+
+axios.get(`${api_path}/`, {withCredentials:true}).then( response => {
+  setIsLogin(response.data.login)
+console.log(isLogin)
+}).catch(err=> console.log('Cookies sorgusunda hata oluştu'))
+
+
+
+} , [] )
 
 
   return (
@@ -44,7 +57,7 @@ export default function App() {
         <Route path="/authentication" element={<AuthPage isLogin={isLogin} isSignup={isSignup} setIsLogin={setIsLogin} setSignup={setSignup} />}>
     
         </Route>
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
   );

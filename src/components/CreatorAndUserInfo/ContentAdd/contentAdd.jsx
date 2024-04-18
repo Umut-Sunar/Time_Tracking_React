@@ -62,6 +62,8 @@ const ContentAdd = forwardRef((props,ref) => {
         `${api_path}/createNewCard/${uniqueCardID}`,
         selectedCardInfos
       );
+      setHourArea("");
+      setNameArea("");
     } catch (err) {
       console.log("gönderilirken hata: ", err);
     }

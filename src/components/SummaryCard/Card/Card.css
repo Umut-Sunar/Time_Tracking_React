@@ -96,11 +96,11 @@ width: 100%;
 
 .delete{
 
-width: 20px;
-height: 20px;
+width: 15px;
+height: 15px;
 position: absolute;
 z-index: 100;
-transform: translate(220px, -230px);
+transform: translate(230px, -250px);
 display: flex;
 justify-content: center;
 align-items: center;
@@ -108,7 +108,13 @@ align-items: center;
 }
 .deleteIconBtn{
 
-              width: 20px;
-              height: 20px;
+              width: 15px;
+              height: 15px;
+
+}
+
+.delete>svg>path {
+
+fill: white;
 
 }

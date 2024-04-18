@@ -1,6 +1,6 @@
 const bgNames= 
 
-['.white','.dynamicColorful','.dark','.dynamicBlue','.yellow']
+['.white','.dark']
 
 
 export default bgNames
