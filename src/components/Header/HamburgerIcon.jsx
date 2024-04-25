@@ -1,20 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faBars } from '@fortawesome/free-solid-svg-icons';
 
-const HamburgerIconWhite = styled.img`
-
-width: 30px;
-height:30px;
-
-`
-
-const HamburgerIconBlack = styled.img`
+const HamburgerIconStyled = styled.img`
 
 width: 30px;
 height:30px;
 
 `
+
 
 export default function HamburgerIcon (props) {
 
@@ -27,15 +23,10 @@ return (
 
 <>
 
-{theme==='dark' ?
- <HamburgerIconBlack
- onClick={handleStatusChange}
- src="src/img/align-justify-black.svg"
-/> 
-: <HamburgerIconWhite
-onClick={handleStatusChange}
-src="src/img/align-justify-white.svg"
-/>}
+
+<FontAwesomeIcon icon={faBars} onClick={handleStatusChange} />
+
+
 
 </>
 

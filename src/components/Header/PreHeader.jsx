@@ -45,7 +45,7 @@ color: ${(props) => props.$theme === 'black' ? 'black' : props.$theme=== 'white'
 `;
 
 export default function PreHeader(props) {
-  const { userData, isLogin, setTheme, theme, bgNames , changBGColor,OpenCloseBar,sidebarstatus } = props;
+  const { userData, isLogin, setTheme, theme, bgNames , changBGColor,OpenCloseBar,sidebarstatus,logout } = props;
 
   return (
     <>
@@ -60,10 +60,12 @@ export default function PreHeader(props) {
 
         <WrapperRight>
           <UserInfoHeader 
+          
           theme={theme}
           userData={userData} />
           <Notification  $theme={theme}/>
           <UserProfileHeader
+          logout={logout}
           bgNames={bgNames}
           changBGColor={changBGColor}
           userData={userData}

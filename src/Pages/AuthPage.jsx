@@ -5,6 +5,7 @@ import axios from "axios";
 import Auth from "./Login";
 import { devices } from "../../deviceStyles/devices";
 import api_path from "../../Backend/Api_path";
+import { Navigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -75,10 +76,8 @@ const TextWrapper= styled.div`
 
 
 `
-
-
 export default function AuthPage(props) {
-  const { isLogin, isSignup, setLoggin, setSignup } = props;
+  const { isLogin, isSignup, changeLoginStatu, setSignup,setUserData } = props;
 
   const [isActive, setIsActive] = useState(window.innerWidth > 501);
   const [dynamic, setDynamic] = useState(`Measure to Empower : Your Time, Your Growth, Your Future`);
@@ -108,7 +107,10 @@ function submitAuth(gettedUserInfo){
   axios
       .post(`${api_path}/authentication`, gettedUserInfo,{ withCredentials: true})
       .then((response) => {
-        console.log(response.data)
+        
+        
+        changeLoginStatu(response.data.login)
+        setUserData(response.data.userInformation)
         
         
         })
@@ -121,6 +123,7 @@ function submitAuth(gettedUserInfo){
 
   return (
     <>
+    {isLogin===true ? <Navigate to='/'  /> :
       <Wrapper className="AuthWrapper">
         {isActive ? (
           <ImageContainer>
@@ -143,6 +146,7 @@ function submitAuth(gettedUserInfo){
           <Auth submitAuth={submitAuth} />
         </AuthArea>
       </Wrapper>
+}
     </>
   );
 }

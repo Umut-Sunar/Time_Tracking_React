@@ -17,7 +17,7 @@ export default function UserInfoHeader(props){
               return( <>
               <User 
               $theme={theme}
-              >{userData.name}</User>
+              >{userData.name ? userData.name: 'How about filling out your profile so your name appears?'}</User>
               
               </>)
 

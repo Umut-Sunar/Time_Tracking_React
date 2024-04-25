@@ -30,12 +30,14 @@ export default function Sticky(props) {
     setTheme,
     userData,
     OpenCloseBar,
+    logout
   } = props;
 
   return (
     <>
       <Wrapper>
         <Header
+        logout={logout}
           bgNames={bgNames}
           changBGColor={changBGColor}
           activeBg={activeBg}

@@ -20,6 +20,7 @@ let cardsData = [
         TotalSpendingTime: "25:12:00",
         VsLastWeek: -8,
         cardColor: "#ED6A7F",
+        _id: 'asdasdasdasdasdas'
       },
     ],
   },

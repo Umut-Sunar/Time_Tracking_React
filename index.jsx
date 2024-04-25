@@ -9,6 +9,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+
 import ErrorPage from "./src/Pages/NotFoundPage";
 
 import "./index.less";

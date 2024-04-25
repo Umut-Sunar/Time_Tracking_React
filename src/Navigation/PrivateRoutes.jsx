@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   NavLink,
   Navigate,
@@ -6,25 +6,22 @@ import {
   Routes,
   BrowserRouter as Router,
   Outlet,
+  useNavigate,
 } from "react-router-dom";
 
 export default function PrivateRoot(props) {
   const { isLogin } = props;
-  const [shouldRedirect, setShouldRedirect] = useState(false);
-
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLogin) {
-      setShouldRedirect(false);
-    } else {
-      setShouldRedirect(true);
+    if (!isLogin) {
+      navigate("/authentication");
     }
   }, [isLogin]);
 
   return (
     <>
-    {shouldRedirect?  <Navigate to='/authentication'> : <Outlet /> }
-     
+      <Outlet />
     </>
   );
 }

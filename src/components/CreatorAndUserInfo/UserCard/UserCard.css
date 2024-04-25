@@ -69,3 +69,48 @@
 
 }
 
+@media (max-width: 810px) {
+
+.User-Playground{
+
+gap:100px
+
+}
+ .user-info {
+
+  width: 100%;
+  height :90px;
+  flex-direction: row;
+  
+
+
+ }
+ .buton-container{
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+ }
+ .profile-pic{
+
+width: 50px;
+height: 50px;
+border-radius: 50%;
+
+ }
+
+ .profile-card {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height:auto;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
+}
+

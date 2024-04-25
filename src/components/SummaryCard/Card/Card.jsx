@@ -7,8 +7,14 @@ import axios from "axios";
 import api_path from "../../../../Backend/Api_path";
 
 function Card(props) {
-  const { eachCardData, showRelatedTrackerDetails, setOpenTrackerArea, key2 } =
-    props;
+  const {
+    eachCardData,
+    showRelatedTrackerDetails,
+    setOpenTrackerArea,
+    key2,
+    setCardData,
+    setIsNewCardAdded,
+  } = props;
 
   function showTrackerDetails() {
     showRelatedTrackerDetails(eachCardData);
@@ -24,8 +30,11 @@ function Card(props) {
 
   function deleteCard() {
     axios
-      .delete(`${api_path}/cardDelete/:${keys}`)
-      .then((response) => response.data)
+      .delete(`${api_path}/cardDelete/${key2}`, { withCredentials: true })
+      .then((response) => {
+        setCardData(response.dataUserProjects);
+        setIsNewCardAdded(true)
+      })
       .catch((err) => console.log("Card Silinirken hata: ", err));
   }
 
@@ -34,19 +43,23 @@ function Card(props) {
       <div className="card-main relative">
         <div className="cardbg absolute"></div>
         <div className="delete" onClick={deleteCard}>
-          <FontAwesomeIcon  className="deleteIconBtn" icon={faTrash} />
+          <FontAwesomeIcon className="deleteIconBtn" icon={faTrash} />
         </div>
         {eachCardData && (
           <div
             className="cardFields relative"
-            style={{ "backgroundColor": `${eachCardData.cardColor}` }}
+            style={{ backgroundColor: `${eachCardData.cardColor}` }}
           >
             <div className="Contentwrapper">
               <h2 className="cardTitle">{eachCardData.ProjectName}</h2>
               <div className="spendingTimeDiv">
                 <p className="spendingHour">{eachCardData.TotalSpendingTime}</p>
               </div>
-              <p className="weeklyChange">
+              
+            </div>
+            
+            <div className="carBtn-main-container">
+            <p className="weeklyChange">
                 <span>Weekly Change % </span>
                 <span
                   className="changeRatio"
@@ -62,8 +75,7 @@ function Card(props) {
                   {eachCardData.VsLastWeek}
                 </span>
               </p>
-            </div>
-            <div className="carBtn-main-container">
+
               <button
                 className="addBtn cardBtn"
                 onClick={(e) => {

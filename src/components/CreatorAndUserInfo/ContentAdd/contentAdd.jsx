@@ -7,7 +7,7 @@ import axios from "axios";
 import api_path from "../../../../Backend/Api_path";
 
 const ContentAdd = forwardRef((props,ref) => {
-  const { closeContentCard, colorData, cardCreated, colorHex } = props;
+  const { closeContentCard, colorData, colorHex ,setIsNewCardAdded} = props;
 
   const [nameArea, setNameArea] = useState("");
   const [hourArea, setHourArea] = useState("");
@@ -43,7 +43,7 @@ const ContentAdd = forwardRef((props,ref) => {
    
   }
   const sendFormData = async (event) => {
-    const uniqueCardID = Math.floor(Math.random() * 100000000);
+    
     event.preventDefault();
 
     const selectedCardInfos = {
@@ -51,19 +51,28 @@ const ContentAdd = forwardRef((props,ref) => {
       TotalSpendingTime: event.target.TotalSpendingTime.value,
       VsLastWeek: 0,
       cardColor: colorHex[event.target.selectedColor.value],
-      uniqueCardID: uniqueCardID,
+      
     };
 
     //Card bilgilerini yukarı mainpage.jsx 'e yolluyorum
-    cardCreated(selectedCardInfos);
+    
+    
 
     try {
-      const response = await axios.post(
-        `${api_path}/createNewCard/${uniqueCardID}`,
-        selectedCardInfos
-      );
+      const response = await axios.put(
+        `${api_path}/createNewCard`,
+        selectedCardInfos ,{withCredentials:true}
+      ).then((res) => {
+        if(res.cardCreationStatu){
+
+        
+
+        }
+        
+      });
       setHourArea("");
       setNameArea("");
+      setIsNewCardAdded(true)
     } catch (err) {
       console.log("gönderilirken hata: ", err);
     }

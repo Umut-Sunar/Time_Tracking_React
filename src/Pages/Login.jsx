@@ -128,6 +128,7 @@ export default function Auth(props) {
 e.preventDefault()
 
     const gettedUserInfo = {
+      
       email: e.target.email.value,
       pass: e.target.password.value,
       isRemember: e.target.checkbox.checked,

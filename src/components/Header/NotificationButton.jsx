@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const Bell = styled.img`
-  width: 20px;
-  height: 20px;
-`;
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faBell } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function NotificationButton() {
 
@@ -12,7 +11,8 @@ export default function NotificationButton() {
 
   return (
     <>
-    <Bell src="src/img/bellwhite.svg" />
+
+<FontAwesomeIcon icon={faBell} />
     </>
   );
 }

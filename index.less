@@ -1,4 +1,6 @@
-* {
+*
+
+{
   box-sizing: border-box;
   
 }
@@ -6,6 +8,7 @@
 html {
 
   max-width: 100vw;
+
 
 }
 
@@ -257,6 +260,21 @@ body {
   flex: 15;
 }
 
+@media (max-width: 810px) {
+
+
+
+.user-info{
+
+  flex:none
+}
+.projects{
+
+  flex: none;
+}
+
+}
+
 .projects {
   flex: 75;
   width: 100%;
@@ -279,6 +297,26 @@ body {
   height: auto;
   gap: 10px;
   position: relative;
+}
+
+@media (max-width: 810px) {
+
+  .User-Playground {
+
+  flex-direction: column;
+  display: flex;
+  width: 100%;
+  justify-content: start;
+  align-items: start;
+  height: auto;
+  gap: 50px;
+ 
+  }
+
+  .body {
+
+    height: auto;
+  }
 }
 
 .records-main-section {

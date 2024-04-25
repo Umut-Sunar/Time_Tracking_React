@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { BackgroundChange } from "../ChangeBackground/background";
+import { Link } from "react-router-dom";
+import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
 
 const ProfileCircle = styled.img`
   width: 40px;
@@ -44,7 +46,7 @@ const ProfileCardWrapper = styled.div`
   background-color: rgb(82, 78, 225);
 `;
 
-const ProfileCardLınks = styled.a`
+const ProfileCardLınks = styled(Link)`
   text-decoration: none;
   font-size: 12px;
 
@@ -66,7 +68,7 @@ flex-direction: column;
 `;
 
 export default function UserProfileHeader(props) {
-  const { userData, isLogin, theme, bgNames, changBGColor ,setTheme} = props;
+  const { userData, isLogin, theme, bgNames, changBGColor ,setTheme,logout} = props;
   const [shortName, setShortName] = useState("");
   const [openUserInfo, setOpenUserInfo] = useState("none");
 
@@ -80,7 +82,11 @@ export default function UserProfileHeader(props) {
   }
 
   useEffect(() => {
-    const names = userData.name.split(" ");
+
+  
+const namo= userData.name
+    if(namo && namo.length>0){
+    const names = namo.split(" ");
 
     const firstNameLetter = names[0][0];
     const surName = names[names.length - 1].toUpperCase();
@@ -88,7 +94,16 @@ export default function UserProfileHeader(props) {
     const surNameLetter = surName[0].toUpperCase();
     const resultShortLetters = firstNameLetter + surNameLetter;
     setShortName(resultShortLetters);
+  }else {
+
+    setShortName('SS');
+  }
   }, [isLogin]);
+
+
+  function handleLogout(){
+    logout()
+  }
 
   return (
     <>
@@ -99,14 +114,15 @@ export default function UserProfileHeader(props) {
 
       <ProfileCardWrapper $theme={theme} $display={openUserInfo}>
         <AllWrapper>
-        <ProfileCardLınks $theme={theme} href="#">
-          {userData.name}
+        <ProfileCardLınks $theme={theme} >
+          {userData.name ? userData.name : 'Complete your profile '   } 
+          
         </ProfileCardLınks>
-        <ProfileCardLınks $theme={theme} href="#">
+        <ProfileCardLınks $theme={theme} >
           {userData.email}
         </ProfileCardLınks>
 
-        <ProfileCardLınks $theme={theme} href="#">
+        <ProfileCardLınks $theme={theme} >
           Profile Settings
         </ProfileCardLınks>
         {/* <BackgroundChange
@@ -114,12 +130,12 @@ export default function UserProfileHeader(props) {
           bgNames={bgNames}
           changBGColor={changBGColor}
         ></BackgroundChange> */}
-        <ProfileCardLınks $theme={theme} href="#">
+        <ProfileCardLınks $theme={theme} >
           UPGRADE
         </ProfileCardLınks>
         </AllWrapper>
         <LogoutWrapper>
-          <ProfileCardLınks $theme={theme} href="#">
+          <ProfileCardLınks $theme={theme} onClick={handleLogout}  to='/' >
             Logout
           </ProfileCardLınks>
         </LogoutWrapper>

@@ -1,13 +1,13 @@
 const colorList = [
-  "Turkuaz",
-  "Beyaz ",
+  "Turquoise",
+  "White ",
   "Purple",
-  "Pembe",
-  "Açık Mavi",
-  "Sarı-Yeşil",
+  "Pink",
+  "Blue",
+  "Turquoise Green",
+  "Red",
   "Tomato",
-  "Tomato 2",
-  "Sarı",
+  "Yellow",
 ];
 
 export default colorList;

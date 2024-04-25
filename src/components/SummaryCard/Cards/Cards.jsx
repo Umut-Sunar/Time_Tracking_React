@@ -3,15 +3,16 @@ import Card from "../Card/Card";
 import "./Cards.css";
 
 function Cards(props) {
-  const { cardData,showRelatedTrackerDetails ,setOpenTrackerArea} = props;
+  const { cardData,showRelatedTrackerDetails ,setOpenTrackerArea,setCardData,setIsNewCardAdded} = props;
 
   return (
     <>
       <div className="projects" id="projectArea">
         <div className="wrapper">
-          {cardData.length > 0 ? (
+          {cardData && cardData.length > 0 ? (
             cardData.map((each, id) => {
-              return <Card key={id} key2={each.uniqueCardID} eachCardData={each} showRelatedTrackerDetails={showRelatedTrackerDetails} setOpenTrackerArea={setOpenTrackerArea} />;
+           
+              return <Card key={id} key2={each._id} eachCardData={each} setCardData={setCardData} showRelatedTrackerDetails={showRelatedTrackerDetails} setOpenTrackerArea={setOpenTrackerArea}  setIsNewCardAdded={setIsNewCardAdded} />;
             })
           ) : (
             <div className="emptyWrapper">

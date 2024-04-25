@@ -8,10 +8,10 @@ import {
 } from "react-router-dom";
 import styled from "styled-components";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import { faGauge } from "@fortawesome/free-solid-svg-icons";
-import { faDatabase } from "@fortawesome/free-solid-svg-icons";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouse, faGauge, faDatabase } from '@fortawesome/free-solid-svg-icons';
+
 
 const Wrapper = styled.section`
   width: 100%;
@@ -131,7 +131,7 @@ export default function Sidebar(props) {
           <Navigation $theme={theme}>
             {sidebarstatus ? (
               <StyledNavLink $theme={theme} to={"/app/mainpage"}>
-                MAIN PAGE
+                PROJECTS
               </StyledNavLink>
             ) : (
               <>

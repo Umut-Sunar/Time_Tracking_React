@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 
-
 import {
   NavLink,
   Route,
   Routes,
   BrowserRouter as Router,
+  Navigate,
 } from "react-router-dom";
 
 import bgNames from "../../Data/backgroundData";
-
 
 
 import EnteranceSentence from "../components/EnteranceSentence/EnterenceSentence";
@@ -20,12 +19,12 @@ import Sticky from "./Sticky";
 
 
 export default function MainContentArea(props) {
-  const { isLogin ,activeBg,setActiveBg,userData } = props;
+  const { isLogin ,activeBg,setActiveBg,userData ,logout} = props;
 
  
   const [theme, setTheme] = useState("white");
  
-  const [sidebarstatus, setSidebarStatus] = useState(true);
+  const [sidebarstatus, setSidebarStatus] = useState(false);
 
   function changBGColor(arr) {
     const html = document.querySelector("html");
@@ -48,22 +47,27 @@ export default function MainContentArea(props) {
       
         {/* <EnteranceSentence /> */}
 
+        {!isLogin ? <Navigate to="/app/mainpage" /> : 
         
-               <Sticky
-               
-               theme={theme}
-               sidebarstatus={sidebarstatus}
-               bgNames={bgNames}
-               changBGColor={changBGColor}
-               activeBg={activeBg}
-               isLogin={isLogin}
-               setTheme={setTheme}
-               userData={userData}
-               OpenCloseBar={OpenCloseBar}
-               
-               
-               />
-              
+        <Sticky
+        logout={logout}
+        theme={theme}
+        sidebarstatus={sidebarstatus}
+        bgNames={bgNames}
+        changBGColor={changBGColor}
+        activeBg={activeBg}
+        isLogin={isLogin}
+        setTheme={setTheme}
+        userData={userData}
+        OpenCloseBar={OpenCloseBar}
+        
+        
+        />
+       
+        
+        
+        }
+            
             
       
      

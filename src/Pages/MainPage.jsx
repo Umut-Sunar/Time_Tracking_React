@@ -12,16 +12,20 @@ import Timer from "../components/TrackerArea/Timer/TimerConcat/Timer";
 
 import cardsData from "../../Data/cardData";
 import colorData from "../../Data/colorlist";
-
 import colorHex from "../../Data/colorListMatchCode";
 
+
+
 import "./MainPage.css";
+import axios from "axios";
+import api_path from "../../Backend/Api_path";
 
 export default function MainPage(props) {
   const { activeBg, userData } = props;
 
   //USER ID 'ye göre data getiren yer bu state
-  const [cardData, setCardData] = useState(cardsData[0]["UserProjects"]);
+  const [cardData, setCardData] = useState(userData.projectDetails);
+  const [isNewCarAdded,setIsNewCardAdded] = useState(false)
   const [addCardStatus, setAddCardStatus] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const [isOpenTrackerArea, setOpenTrackerArea] = useState(false);
@@ -31,10 +35,23 @@ export default function MainPage(props) {
 
 
   useEffect(() => {
+   
+    
     const whereClick = document.body.addEventListener("mousedown", (ev) => {
       closingContentAddWithClick(ev.target, contentCardFocus);
     });
-  }, [addCardStatus]);
+
+    axios.get(`${api_path}`,{withCredentials:true}).then(res => {
+      
+      setCardData(res.data.
+        userInformation.projectDetails
+        ) 
+
+
+    }).catch((err ) => {console.log('Mainpage.js carddata çekilirken hata' )}) 
+setIsNewCardAdded(false)
+
+  }, [addCardStatus,isNewCarAdded]);
 
   function closingContentAddWithClick(element, focus) {
     const isCover = focus.current.contains(element);
@@ -56,11 +73,7 @@ export default function MainPage(props) {
 
   //card create fonskyionudur aslında, ismini çok yerde kullandığım
   // için değiştirmedim
-  function cardCreated(selectedDataObj) {
-    const newCardData = selectedDataObj;
-    setCardData([...cardData, newCardData]);
 
-  }
   function showRelatedTrackerDetails() {
     return;
   }
@@ -78,18 +91,21 @@ export default function MainPage(props) {
                 closeContentCard={closeContentCard}
                 // contentCreate={contentCreate}
                 colorData={colorData}
-                cardCreated={cardCreated}
+                
                 colorHex={colorHex}
                 ref={contentCardFocus}
                 isMouseClickAddContent={isMouseClickAddContent}
+                setIsNewCardAdded={setIsNewCardAdded}
               ></ContentAdd>
             )}
             <Cards
               classname={"main-cards-area"}
               userData={userData}
               cardData={cardData}
+              setCardData={setCardData}
               showRelatedTrackerDetails={showRelatedTrackerDetails}
               setOpenTrackerArea={setOpenTrackerArea}
+              setIsNewCardAdded={setIsNewCardAdded}
             ></Cards>
           </div>
           {activeBg === "dynamicBlue" ? (
