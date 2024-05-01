@@ -98,7 +98,7 @@ const ContentAdd = forwardRef((props,ref) => {
             className="createCardForm"
             onSubmit={(event) => sendFormData(event)}
           >
-            <label htmlFor="">Project Name</label>
+            <label htmlFor="projectName">Project Name</label>
             <input
               id="projectName"
               name="ProjectName"
@@ -108,7 +108,7 @@ const ContentAdd = forwardRef((props,ref) => {
               value={nameArea}
               onChange={(e) => listenNameChange(e)}
             />
-            <label htmlFor="">Spending Hour (opt)</label>
+            <label htmlFor="spendingTime">Spending Hour (opt)</label>
             <input
               id="spendingTime"
               name="TotalSpendingTime"
